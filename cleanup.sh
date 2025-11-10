@@ -4,5 +4,10 @@
 rm $HOME/.tmux.conf
 rm -r $HOME/.tmux
 
-# neovim cleanup
-rm -r $HOME/.config/nvim
+# required
+rm ~/.config/nvim{,.bak}
+
+# optional but recommended
+rm ~/.local/share/nvim{,.bak}
+rm ~/.local/state/nvim{,.bak}
+rm ~/.cache/nvim{,.bak}
