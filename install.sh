@@ -2,13 +2,13 @@
 
 # Pre-SETUP
 apt update
-apt install wget zsh
+apt install -y wget zsh
 
 # Make sure icons appear correctly by setting locale
 apt update
 apt install -y locales
-echo "locale-gen en_US.UTF-8" >> ~/.zshrc
-echo "update-locale LANG=en_US.UTF-8" >> ~/.zshrc
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
 echo "export LANG=en_US.UTF-8"  >> ~/.zshrc
 echo "export LC_ALL=en_US.UTF-8" >> ~/.zshrc
 
