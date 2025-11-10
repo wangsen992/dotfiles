@@ -5,6 +5,8 @@
 # export USER_HOME=/home/${USER}
 SUDO=$(which sudo)
 
+$SUDO apt-get install -y wget git
+
 wget install-node.vercel.app/lts && $SUDO bash lts --yes && rm lts
 
 # download nvim source code and install pre-requistes
