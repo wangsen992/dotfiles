@@ -2,7 +2,7 @@
 
 # Pre-SETUP
 apt update
-apt install git wget tmux
+apt install wget tmux
 
 # Make sure icons appear correctly by setting locale
 apt update
