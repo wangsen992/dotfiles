@@ -6,7 +6,7 @@ apt install -y wget zsh
 
 # Make sure icons appear correctly by setting locale
 apt update
-apt install -y locales
+apt install -y locales ncurses-term
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 echo "export LANG=en_US.UTF-8"  >> ~/.zshrc
