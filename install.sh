@@ -13,6 +13,7 @@ echo "export LANG=en_US.UTF-8"  >> ~/.zshrc
 echo "export LC_ALL=en_US.UTF-8" >> ~/.zshrc
 
 # tmux setup
+apt install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 
