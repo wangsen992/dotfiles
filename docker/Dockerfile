@@ -14,18 +14,18 @@ RUN mkdir /app; chmod 777 /app
 WORKDIR /app
 
 # COPY Resources
-COPY ${DI_RESOURCES} ${IMAGE_RESOURCES}
+COPY resource /app/resource
 
 RUN apt-get update; \
   apt-get install -y sudo wget git build-essential zsh;\
-  rm /var/lib/apt/lists
-RUN bash /app/resource/add_user.sh
+  rm -r /var/lib/apt/lists
+RUN bash /app/resource/add_user.sh ${USER}
 
+USER ${USER}
 WORKDIR /home/${USER}
 RUN git clone https://github.com/wangsen992/dotfiles; bash dotfiles/install.sh
 
 RUN bash /app/resource/install_nvim.sh
 
-USER ${USER}
 
 

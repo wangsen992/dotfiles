@@ -9,23 +9,14 @@ services:
       dockerfile: ./Dockerfile
       args:
         - BASE=ubuntu:24.04 # Using devel causes cmake to create error
-        - DI_RESOURCES=Resources
-        - IMAGE_RESOURCES=/app/Resources
         - USER=user
-        - DOCKER_USER=wangsen992
-        - IMAGE_NAME=dotfiles
-        - WORKSPACE_DIR=.
-        - HOST_PORT=8888
-        - CONTAINER_PORT=8888
-    image: ${DOCKER_USER}/${IMAGE_NAME}
-    container_name: ${CONTAINER_NAME}
+    image: wangsen992/dotfiles
+    container_name: dotfile_container
     security_opt:
       - seccomp:unconfined #optional
     environment:
       - TZ=Etc/UTC
-    volumes:
-      - ${WORKSPACE_DIR}:/mnt/workspace
     ports:
-      - ${HOST_PORT}:${CONTAINER_PORT}
+      - 8888:8888
     restart: "no"
-    command: bash -c "vncserver :2 -select-de XFCE; sudo tail -F /var/log/syslog"
+    command: /bin/zsh

@@ -1,19 +1,21 @@
 #!/bin/zsh
 
+SUDO=$(which sudo)
+
 # Pre-SETUP
-apt update
-apt install -y wget zsh
+$SUDO apt update
+$SUDO apt install -y wget zsh
 
 # Make sure icons appear correctly by setting locale
-apt update
-apt install -y locales ncurses-term
+$SUDO apt update
+$SUDO apt install -y locales ncurses-term
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 echo "export LANG=en_US.UTF-8"  >> ~/.zshrc
 echo "export LC_ALL=en_US.UTF-8" >> ~/.zshrc
 
 # tmux setup
-apt install -y tmux
+$SUDO apt install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 
