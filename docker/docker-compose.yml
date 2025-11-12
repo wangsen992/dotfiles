@@ -8,7 +8,7 @@ services:
       context: ${CONTEXT}
       dockerfile: ./Dockerfile
       args:
-        - BASE=ubuntu:24.04 # Using devel causes cmake to create error
+        - BASE=ubuntu:25.10 # Using devel causes cmake to create error
         - USER=user
     image: wangsen992/dotfiles
     container_name: dotfile_container

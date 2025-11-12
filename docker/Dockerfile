@@ -17,15 +17,20 @@ WORKDIR /app
 COPY resource /app/resource
 
 RUN apt-get update; \
-  apt-get install -y sudo wget git build-essential zsh;\
+  apt-get install -y sudo wget git build-essential zsh curl ripgrep \
+                     ruby-full fd-find python3;\
   rm -r /var/lib/apt/lists
 RUN bash /app/resource/add_user.sh ${USER}
 
 USER ${USER}
 WORKDIR /home/${USER}
+
+# Install node
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash ;\
+    bash -c ". $HOME/.nvm/nvm.sh; nvm install 24" ;\
+    echo "\. $HOME/.nvm/nvm.sh" >> $HOME/.zshrc
+
 RUN git clone https://github.com/wangsen992/dotfiles; bash dotfiles/install.sh
 
 RUN bash /app/resource/install_nvim.sh
-
-
 
