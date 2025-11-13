@@ -1,12 +1,12 @@
 # Default values provided here, overridden from either command line
 # or compose file. 
-ARG USER=user
 ARG BASE=ubuntu
 
 # Select base image
 # NOTE: : Image should be debian based for this dockerfile
 FROM ${BASE}
 
+ARG USER=user
 # COPY Resources
 RUN mkdir /app; chmod 777 /app
 COPY resource /app/resource
@@ -23,7 +23,7 @@ USER ${USER}
 WORKDIR /home/${USER}
 
 RUN git clone https://github.com/wangsen992/dotfiles
-RUN zsh dotfiles/install.sh
+RUN bash dotfiles/install.sh
 RUN sudo locale-gen en_US.UTF-8
 # RUN chsh -s $(which zsh); \
 #   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
