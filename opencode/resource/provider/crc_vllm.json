@@ -1,0 +1,19 @@
+{
+  "npm": "@ai-sdk/openai-compatible",
+  "name": "University Cluster",
+  "options": {
+    // Must match the port you forwarded with SSH
+    "baseURL": "http://localhost:8861/v1" 
+  },
+  "models": {
+    "meta-llama/Llama-3.1-8B-Instruct": {
+      "name": "meta-llama",
+      "tools": true,         // ESSENTIAL: Enables agent tools
+      "reasoning": true,     // Optional: Allows for planning/reasoning steps
+      "limit": {
+        "context": 26000,    // Ensures enough space for code and history
+        "output": 4096       // Good output size for file edits
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "npm": "@ai-sdk/openai-compatible",
+  "name": "Notre Dame CRC",
+  "options": {
+    "baseURL": "https://openwebui.crc.nd.edu/api/v1/",
+    "headers": {
+      "Authorization": "Bearer {ENV:MY_OPEN_WEBUI_API_KEY}"
+      }
+    },
+  "models": {
+    "gpt-oss:latest": {},
+    "gpt-oss:120b": { 
+        "tools" : true, 
+        "limit" : { "context" : 200000, "output" : 12000 }
+        },
+    "llama3.3:latest": {},
+    "llama4:scout": {},
+    "mistral-large:latest": { 
+        "tools" : true, 
+        "limit" : { "context" : 200000, "output" : 12000 }
+        },
+    "codellama:70b": {},
+    "devstral:latest": {},
+    "qwen2.5-coder:32b": { 
+        "tools" : true, 
+        "limit" : { "context" : 16384, "output" : 4096 }
+        },
+    }
+}
