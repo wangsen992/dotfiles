@@ -103,4 +103,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $HOME/.zsh_local
+if [[ -f $HOME/.zsh_local ]]; then
+  source $HOME/.zsh_local
+fi
