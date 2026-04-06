@@ -1,24 +1,75 @@
 # dotfiles
 
-The setup is specific to the repo maintainer and use with care if you are
-adopting for your only use.
+Quick setup for a familiar operating environment on any machine.
 
-The goal is to be able to quickly set up a familiar operating environment
-within one minute one any machine, such that work can be proceeded quickly. 
+## Prerequisites
 
-Components in the setup: 
-* [tmux](https://github.com/tmux/tmux)
-  * [catppuccin/tmux](https://github.com/catppuccin/tmux)
-  * and more ..
-* [neovim](https://github.com/neovim/neovim)
-  * [LazyVim/LazyVim](https://github.com/LazyVim/LazyVim)
+- Unix-like system (macOS or Linux)
+- `git` installed
 
-## tmux setup
-Steps used to setup
-1. Install tmux with version >= 3.4 
+## Installation
 
-## neovim setup
-1. Install neovim with version >= 0.11.5
-2. Setup _LazyVim_ with _LazyVim/starter_
+```bash
+git clone https://github.com/senwang/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install.sh
+```
 
-## Full Install and Full Cleaning
+Then create a `~/.zsh_local` file for machine-specific settings (optional).
+
+## What Gets Installed
+
+| Component | Description |
+|-----------|-------------|
+| **zsh + Oh My Zsh** | Shell with plugins (git, ssh, docker, starship) |
+| **tmux** | Terminal multiplexer with Catppuccin theme |
+| **neovim + LazyVim** | Editor with Catppuccin Mocha theme |
+| **Homebrew** | Package manager (macOS or Linuxbrew on Linux) |
+
+## Manual Steps After Install
+
+1. **tmux**: Press `prefix + I` (default: `Ctrl-a I`) to install TPM plugins
+2. **neovim**: Open nvim and let LazyVim auto-install plugins
+
+## Machine-Specific Configuration
+
+Create `~/.zsh_local` for settings that should only exist on specific machines:
+
+```zsh
+# Example ~/.zsh_local
+export EDITOR='nvim'
+export GITHUB_TOKEN="your-token-here"
+
+# OpenClaw completions
+if [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]]; then
+  source "$HOME/.openclaw/completions/openclaw.zsh"
+fi
+
+# bun
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+```
+
+## Troubleshooting
+
+### tmux plugins not loading
+Press `prefix + I` to fetch TPM plugins (prefix is `Ctrl-a` on Linux, `Ctrl-a` on macOS).
+
+### neovim lazy-lock.json issues
+Delete `lazy-lock.json` and restart nvim to force fresh plugin installation.
+
+### Homebrew not found after install
+Add to your shell:
+```zsh
+eval "$(brew shellenv)"  # macOS
+# or
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"  # Linux
+```
+
+## Uninstallation
+
+```bash
+cd ~/dotfiles
+./cleanup.sh
+```

@@ -1,13 +1,24 @@
 #!/bin/zsh
 
-# tmux cleanup
-rm $HOME/.tmux.conf
-rm -r $HOME/.tmux
+echo "Cleaning up dotfiles..."
 
-# required
-rm ~/.config/nvim{,.bak}
+# tmux
+rm -f $HOME/.tmux.conf
+rm -rf $HOME/.tmux
 
-# optional but recommended
-rm ~/.local/share/nvim{,.bak}
-rm ~/.local/state/nvim{,.bak}
-rm ~/.cache/nvim{,.bak}
+# neovim
+rm -rf $HOME/.config/nvim{,.bak}
+rm -rf $HOME/.local/share/nvim{,.bak}
+rm -rf $HOME/.local/state/nvim{,.bak}
+rm -rf $HOME/.cache/nvim{,.bak}
+
+# zsh
+rm -f $HOME/.zshrc
+rm -rf $HOME/.oh-my-zsh
+
+# homebrew (macOS)
+if [[ "$(uname)" == "Darwin" ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+fi
+
+echo "Done! Restart your shell to complete cleanup."
