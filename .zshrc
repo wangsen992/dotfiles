@@ -103,6 +103,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Fallback TERM if terminal type is missing or unsupported
+if [[ "$TERM" == "xterm-ghostty" ]] || [[ -z "$TERM" ]]; then
+  export TERM=xterm-256color
+fi
+
 if [[ -f $HOME/.zsh_local ]]; then
   source $HOME/.zsh_local
 fi
